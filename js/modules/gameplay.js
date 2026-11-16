@@ -1,8 +1,13 @@
 import { FLOWCHART_DATA } from "../data/flowchartData.js";
 import { PSEUDOCODE_DATA } from "../data/pseudocodeData.js";
-import { gameState, saveProgress, calculateStars } from "../utils/storage.js";
+import {
+  gameState,
+  saveProgress,
+  calculateStars,
+  syncProgressToSpreadsheet,
+} from "../utils/storage.js";
 import { playClick, playCorrect, playWrong, playWin } from "../utils/audio.js";
-import { navigateTo } from "./navigation.js";
+import { navigateTo, showToast } from "./navigation.js";
 import { renderAwardingScreen } from "./renderPages.js";
 
 let activeItems = [];
@@ -30,7 +35,6 @@ export function startLevel(levelNum) {
 
   activeItems = levelNum === 1 ? FLOWCHART_DATA : PSEUDOCODE_DATA;
 
-  // Update Header UI
   document.getElementById("gp-level-badge").textContent = `LEVEL ${levelNum}`;
   document.getElementById("gp-level-title").textContent =
     levelNum === 1 ? "FLOWCHART" : "PSEUDOCODE";
@@ -91,7 +95,6 @@ function renderGameplayBoard(levelNum) {
   const shuffledSources = shuffleArray(activeItems);
   const shuffledTargets = shuffleArray(activeItems);
 
-  // Render Kartu Objek yang Dapat Diseret
   dragContainer.innerHTML = shuffledSources
     .map((item) => {
       const visualHTML =
@@ -100,9 +103,7 @@ function renderGameplayBoard(levelNum) {
           : `<div class="drag-item-visual"><code class="badge badge-blue" style="font-family:'Fira Code',monospace;">${item.name}</code></div>`;
 
       const subText =
-        levelNum === 1
-          ? item.shape
-          : item.syntax.split("\n")[0];
+        levelNum === 1 ? item.shape : item.syntax.split("\n")[0];
 
       return `
         <div class="drag-item" draggable="true" data-item-id="${item.id}">
@@ -116,7 +117,6 @@ function renderGameplayBoard(levelNum) {
     })
     .join("");
 
-  // Render Target Drop Zone
   dropContainer.innerHTML = shuffledTargets
     .map(
       (item) => `
@@ -139,12 +139,10 @@ function evaluateMatch(draggedId, targetElement) {
   const itemData = activeItems.find((x) => x.id === draggedId);
   const sourceElement = document.querySelector(`.drag-item[data-item-id="${draggedId}"]`);
 
-  // Bersihkan seleksi tap
   selectedItemId = null;
   document.querySelectorAll(".drag-item").forEach((el) => el.classList.remove("selected"));
 
   if (draggedId === targetId && itemData) {
-    // JAWABAN BENAR (Poin hanya diberikan 1x per soal)
     solvedIds.add(targetId);
     sessionScore += 10;
     playCorrect();
@@ -165,12 +163,11 @@ function evaluateMatch(draggedId, targetElement) {
       handleLevelComplete();
     }
   } else {
-    // JAWABAN SALAH
     sessionWrong += 1;
     playWrong();
 
     targetElement.classList.remove("shake-error");
-    void targetElement.offsetWidth; // trigger reflow untuk ulangi animasi
+    void targetElement.offsetWidth;
     targetElement.classList.add("shake-error");
     setTimeout(() => targetElement.classList.remove("shake-error"), 400);
 
@@ -207,6 +204,10 @@ function handleLevelComplete() {
   }
 
   saveProgress();
+  syncProgressToSpreadsheet(
+    levelNum === 1 ? "Selesai Level 1" : "Selesai Semua Level"
+  );
+  showToast("Progres & skor tersimpan ke Google Spreadsheet!");
   playWin();
 
   const completeBar = document.getElementById("gp-complete-bar");
@@ -233,7 +234,6 @@ function attachBoardInteractions() {
   dragItems.forEach((item) => {
     const id = item.getAttribute("data-item-id");
 
-    // 1. Desktop HTML5 Drag & Drop
     item.addEventListener("dragstart", (e) => {
       if (solvedIds.has(id)) return;
       e.dataTransfer?.setData("text/plain", id);
@@ -244,38 +244,45 @@ function attachBoardInteractions() {
       item.classList.remove("dragging");
     });
 
-    // 2. Touch Dragging (Mobile / Tablet)
-    item.addEventListener("touchstart", (e) => {
-      if (solvedIds.has(id)) return;
-      const touch = e.touches[0];
-      activeTouchId = id;
-      item.classList.add("dragging");
+    item.addEventListener(
+      "touchstart",
+      (e) => {
+        if (solvedIds.has(id)) return;
+        const touch = e.touches[0];
+        activeTouchId = id;
+        item.classList.add("dragging");
 
-      touchGhost = item.cloneNode(true);
-      touchGhost.style.position = "fixed";
-      touchGhost.style.width = `${item.offsetWidth}px`;
-      touchGhost.style.pointerEvents = "none";
-      touchGhost.style.zIndex = "999";
-      touchGhost.style.opacity = "0.9";
-      touchGhost.style.left = `${touch.clientX - item.offsetWidth / 2}px`;
-      touchGhost.style.top = `${touch.clientY - 30}px`;
-      document.body.appendChild(touchGhost);
-    }, { passive: true });
+        touchGhost = item.cloneNode(true);
+        touchGhost.style.position = "fixed";
+        touchGhost.style.width = `${item.offsetWidth}px`;
+        touchGhost.style.pointerEvents = "none";
+        touchGhost.style.zIndex = "999";
+        touchGhost.style.opacity = "0.9";
+        touchGhost.style.left = `${touch.clientX - item.offsetWidth / 2}px`;
+        touchGhost.style.top = `${touch.clientY - 30}px`;
+        document.body.appendChild(touchGhost);
+      },
+      { passive: true }
+    );
 
-    item.addEventListener("touchmove", (e) => {
-      if (!activeTouchId || !touchGhost) return;
-      e.preventDefault();
-      const touch = e.touches[0];
-      touchGhost.style.left = `${touch.clientX - touchGhost.offsetWidth / 2}px`;
-      touchGhost.style.top = `${touch.clientY - 30}px`;
+    item.addEventListener(
+      "touchmove",
+      (e) => {
+        if (!activeTouchId || !touchGhost) return;
+        e.preventDefault();
+        const touch = e.touches[0];
+        touchGhost.style.left = `${touch.clientX - touchGhost.offsetWidth / 2}px`;
+        touchGhost.style.top = `${touch.clientY - 30}px`;
 
-      dropZones.forEach((z) => z.classList.remove("drag-over"));
-      const elemBelow = document.elementFromPoint(touch.clientX, touch.clientY);
-      const zone = elemBelow?.closest(".drop-zone");
-      if (zone && !zone.classList.contains("matched-correct")) {
-        zone.classList.add("drag-over");
-      }
-    }, { passive: false });
+        dropZones.forEach((z) => z.classList.remove("drag-over"));
+        const elemBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+        const zone = elemBelow?.closest(".drop-zone");
+        if (zone && !zone.classList.contains("matched-correct")) {
+          zone.classList.add("drag-over");
+        }
+      },
+      { passive: false }
+    );
 
     item.addEventListener("touchend", (e) => {
       if (!activeTouchId) return;
@@ -295,7 +302,6 @@ function attachBoardInteractions() {
       activeTouchId = null;
     });
 
-    // 3. Tap-to-Match (Klik/Sentuh untuk memilih)
     item.addEventListener("click", () => {
       if (solvedIds.has(id)) return;
       playClick();
@@ -331,7 +337,6 @@ function attachBoardInteractions() {
       }
     });
 
-    // Tap-to-Match pada target
     zone.addEventListener("click", () => {
       if (selectedItemId && !zone.classList.contains("matched-correct")) {
         evaluateMatch(selectedItemId, zone);

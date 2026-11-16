@@ -1,4 +1,4 @@
-import { gameState } from "../utils/storage.js";
+import { gameState, saveProgress } from "../utils/storage.js";
 import { playClick } from "../utils/audio.js";
 import { renderLevelCards } from "./renderPages.js";
 
@@ -13,7 +13,7 @@ export function showToast(message) {
   clearTimeout(toast._timer);
   toast._timer = setTimeout(() => {
     toast.classList.add("hidden");
-  }, 2800);
+  }, 3000);
 }
 
 export function setInfoOrigin(originPageId) {
@@ -75,7 +75,7 @@ export function initNavigation() {
       e.preventDefault();
       playClick();
       const menuName = link.getAttribute("data-menu-name") || "Menu";
-      showToast(`Menu "${menuName}" pengembangan berikutnya.`);
+      showToast(`Menu "${menuName}" disiapkan sebagai placeholder untuk pengembangan berikutnya.`);
     });
   });
 
@@ -109,8 +109,27 @@ export function initNavigation() {
     navigateTo("page-algo-menu");
   });
 
-  // Main Menu ALGO MATCH -> Pemilihan Level / Materi / Panduan
+  // Main Menu ALGO MATCH -> Validasi Identitas lalu Pemilihan Level
   document.getElementById("btn-algo-start")?.addEventListener("click", () => {
+    const namaEl = document.getElementById("input-player-nama");
+    const nimEl = document.getElementById("input-player-nim");
+    const kelasEl = document.getElementById("input-player-kelas");
+
+    const nama = namaEl?.value.trim() || "";
+    const nim = nimEl?.value.trim() || "";
+    const kelas = kelasEl?.value.trim() || "";
+
+    if (!nama || !nim || !kelas) {
+      playClick();
+      showToast("Harap isi Nama Lengkap, NIM, dan Kelas terlebih dahulu!");
+      if (!nama) namaEl?.focus();
+      else if (!nim) nimEl?.focus();
+      else kelasEl?.focus();
+      return;
+    }
+
+    gameState.player = { nama, nim, kelas };
+    saveProgress();
     playClick();
     navigateTo("page-levels");
   });

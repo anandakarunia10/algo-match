@@ -241,7 +241,7 @@
     <!-- =========================================================
          HALAMAN 4: MAIN MENU ALGO MATCH
          ========================================================= -->
-    <section id="page-algo-menu" class="page hidden">
+<section id="page-algo-menu" class="page hidden">
       <div class="container">
         <div class="top-nav-bar">
           <button type="button" class="btn btn-secondary btn-sm" data-nav="page-submenu">
@@ -259,6 +259,23 @@
               <p class="algo-menu-desc">
                 Latih pemahaman konsep dasar algoritma dengan mencocokkan bentuk simbol <strong>Flowchart</strong> dan struktur perintah <strong>Pseudocode</strong> secara interaktif melalui mekanisme Drag &amp; Drop.
               </p>
+
+              <!-- FORM IDENTITAS MAHASISWA -->
+              <div style="background: var(--bg-secondary); border: 1px solid var(--light-blue); border-radius: 14px; padding: 16px; margin-bottom: 18px; max-width: 420px;">
+                <div style="font-size: 0.85rem; font-weight: 700; color: var(--dark-navy); margin-bottom: 10px;">
+                  Data Identitas Pemain
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                  <input type="text" id="input-player-nama" placeholder="Nama Lengkap"
+                    style="width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 10px; font-family: inherit; font-size: 0.9rem; background: #FFFFFF;" />
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <input type="text" id="input-player-nim" placeholder="NIM"
+                      style="width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 10px; font-family: inherit; font-size: 0.9rem; background: #FFFFFF;" />
+                    <input type="text" id="input-player-kelas" placeholder="Kelas (mis. TRPL 3A)"
+                      style="width: 100%; padding: 10px 12px; border: 1px solid var(--border-color); border-radius: 10px; font-family: inherit; font-size: 0.9rem; background: #FFFFFF;" />
+                  </div>
+                </div>
+              </div>
 
               <div class="algo-menu-buttons">
                 <button type="button" id="btn-algo-start" class="btn btn-primary btn-lg">
