@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Algo Match </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/gameplay.css" />
+</head>
+<body>
+  <!-- TOP NAVBAR -->
+  <header class="top-navbar">
+    <div class="container navbar-inner">
+      <button type="button" id="brand-home-btn" class="brand-logo" title="Kembali ke Menu Pembelajaran">
+        <span class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="5" rx="2.5"></rect>
+            <polygon points="12 10 17 14 12 18 7 14 12 10"></polygon>
+            <path d="M10 5.5h4a2 2 0 0 1 2 2V10"></path>
+            <path d="M12 18v3"></path>
+          </svg>
+        </span>
+        <span class="brand-text">ALGO<span class="brand-accent">MATCH</span></span>
+      </button>
+
+      <div class="navbar-actions">
+        <span class="badge badge-blue hide-mobile">TPACK • Algoritma Dasar</span>
+        <button type="button" id="sound-toggle-btn" class="btn-icon" aria-label="Pengaturan Suara" title="Aktifkan/Nonaktifkan Suara">
+          <svg id="icon-sound-on" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+          <svg id="icon-sound-off" class="hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <!-- =========================================================
+         HALAMAN 1: MENU PEMBELAJARAN (PORTAL UTAMA - 4 KATEGORI)
+         ========================================================= -->
+    <section id="page-portal" class="page active">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="badge badge-yellow">Platform Pembelajaran Digital</span>
+          <h1 class="page-title">Menu Pembelajaran</h1>
+          <p class="page-subtitle">Pilih layanan dan media pembelajaran interaktif untuk mendukung pemahaman konsep algoritma dan pemrograman dasar.</p>
+        </div>
+
+        <div class="grid-4 portal-grid">
+          <!-- 1. SUMBER BELAJAR DIGITAL -->
+          <article class="card portal-card portal-card-featured">
+            <div class="portal-card-top">
+              <div class="card-icon-box bg-blue text-white">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </div>
+              <span class="badge badge-yellow">Tersedia</span>
+            </div>
+            <h2 class="card-title">Sumber Belajar Digital</h2>
+            <p class="card-desc">Pelajari berbagai materi melalui video, modul digital, infografis, dan bahan ajar interaktif.</p>
+            <div class="card-footer">
+              <a href="https://youtu.be/eN7_T725I-g" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-full">Buka Menu</a>
+            </div>
+          </article>
+
+          <!-- 2. GAME INTERAKTIF (AKTIF) -->
+          <article class="card portal-card portal-card-featured">
+            <div class="portal-card-top">
+              <div class="card-icon-box bg-blue text-white">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="6" y1="12" x2="10" y2="12"></line>
+                  <line x1="8" y1="10" x2="8" y2="14"></line>
+                  <line x1="15" y1="13" x2="15.01" y2="13"></line>
+                  <line x1="18" y1="11" x2="18.01" y2="11"></line>
+                  <rect x="2" y="6" width="20" height="12" rx="4"></rect>
+                </svg>
+              </div>
+              <span class="badge badge-yellow">Tersedia</span>
+            </div>
+            <h2 class="card-title">Game Interaktif</h2>
+            <p class="card-desc">Tingkatkan pengetahuan melalui permainan edukatif yang menarik dan menyenangkan.</p>
+            <div class="card-footer">
+              <button type="button" id="btn-open-game-submenu" class="btn btn-primary btn-full">Buka Menu</button>
+            </div>
+          </article>
+
+          <!-- 3. KELAS DIGITAL -->
+          <article class="card portal-card">
+            <div class="card-icon-box bg-soft-blue text-blue">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h2 class="card-title">Kelas Digital</h2>
+            <p class="card-desc">Ikuti kegiatan pembelajaran, diskusi, dan aktivitas belajar secara digital.</p>
+            <div class="card-footer">
+              <a href="#" class="btn btn-secondary btn-full placeholder-link" data-menu-name="Kelas Digital">Buka Menu</a>
+            </div>
+          </article>
+
+          <!-- 4. BANK SOAL -->
+          <article class="card portal-card">
+            <div class="card-icon-box bg-soft-blue text-blue">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 11l3 3L22 4"></path>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+              </svg>
+            </div>
+            <h2 class="card-title">Bank Soal</h2>
+            <p class="card-desc">Latih kemampuan melalui kumpulan soal, kuis, dan evaluasi pembelajaran.</p>
+            <div class="card-footer">
+              <a href="#" class="btn btn-secondary btn-full placeholder-link" data-menu-name="Bank Soal">Buka Menu</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         HALAMAN 2: SUBMENU GAME INTERAKTIF (3 KARTU)
+         ========================================================= -->
+    <section id="page-submenu" class="page hidden">
+      <div class="container">
+        <div class="top-nav-bar">
+          <button type="button" class="btn btn-secondary btn-sm" data-nav="page-portal">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Kembali ke Menu Pembelajaran
+          </button>
+        </div>
+
+        <div class="section-header text-center">
+          <span class="badge badge-yellow">Kategori Aktif • ALGO MATCH</span>
+          <h1 class="page-title">Game Interaktif</h1>
+          <p class="page-subtitle">Eksplorasi materi dasar algoritma, pahami aturan permainan, dan uji pemahamanmu melalui aktivitas Drag &amp; Drop interaktif.</p>
+        </div>
+
+        <div class="grid-3 submenu-grid">
+          <!-- A. GAME -->
+          <article class="card submenu-card">
+            <div class="card-icon-box bg-blue text-white">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </div>
+            <span class="badge badge-yellow">2 Level Tersedia</span>
+            <h2 class="card-title">Game</h2>
+            <p class="card-desc">Mainkan permainan edukatif untuk menguji pemahaman mengenai konsep Flowchart dan Pseudocode.</p>
+            <div class="card-footer">
+              <button type="button" id="btn-submenu-game" class="btn btn-primary btn-full">Mulai Game</button>
+            </div>
+          </article>
+
+          <!-- B. MATERI -->
+          <article class="card submenu-card">
+            <div class="card-icon-box bg-soft-blue text-blue">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+              </svg>
+            </div>
+            <span class="badge badge-blue">Konsep Dasar</span>
+            <h2 class="card-title">Materi</h2>
+            <p class="card-desc">Pelajari konsep dasar algoritma, simbol Flowchart, dan struktur Pseudocode sebelum bermain.</p>
+            <div class="card-footer">
+              <button type="button" id="btn-submenu-materi" class="btn btn-primary btn-full">Pelajari Materi</button>
+            </div>
+          </article>
+
+          <!-- C. PANDUAN -->
+          <article class="card submenu-card">
+            <div class="card-icon-box bg-soft-blue text-blue">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+              </svg>
+            </div>
+            <span class="badge badge-blue">Aturan &amp; Mekanisme</span>
+            <h2 class="card-title">Panduan</h2>
+            <p class="card-desc">Pelajari aturan, mekanisme, dan cara memainkan game ALGO MATCH.</p>
+            <div class="card-footer">
+              <button type="button" id="btn-submenu-panduan" class="btn btn-primary btn-full">Lihat Panduan</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         HALAMAN 3: SPLASH SCREEN ALGO MATCH
+         ========================================================= -->
+    <section id="page-splash" class="page hidden">
+      <div class="container splash-container">
+        <div class="card splash-card text-center">
+          <div class="splash-geo-accents">
+            <span class="geo-dot bg-yellow"></span>
+            <span class="geo-pill bg-soft-blue"></span>
+          </div>
+
+          <div class="splash-illustration">
+            <svg width="220" height="120" viewBox="0 0 220 120" fill="none">
+              <rect x="65" y="8" width="90" height="28" rx="14" fill="#DBEAFE" stroke="#2563EB" stroke-width="2.5"/>
+              <text x="110" y="26" text-anchor="middle" fill="#172554" font-family="Plus Jakarta Sans" font-size="11" font-weight="700">START</text>
+              <line x1="110" y1="36" x2="110" y2="54" stroke="#2563EB" stroke-width="2.5"/>
+              <polygon points="110,56 105,49 115,49" fill="#2563EB"/>
+              <polygon points="110,58 158,84 110,110 62,84" fill="#FEF9C3" stroke="#FACC15" stroke-width="2.5"/>
+              <text x="110" y="88" text-anchor="middle" fill="#172554" font-family="Plus Jakarta Sans" font-size="11" font-weight="700">MATCH?</text>
+            </svg>
+          </div>
+
+          <span class="badge badge-yellow">Game Edukasi Algoritma</span>
+          <h1 class="splash-title">ALGO <span class="text-blue">MATCH</span></h1>
+          <p class="splash-tagline">Learn, Match, and Master the Algorithm!</p>
+
+          <div class="splash-actions">
+            <button type="button" id="btn-enter-algo-menu" class="btn btn-primary btn-lg">
+              Masuk ke Menu Game
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         HALAMAN 4: MAIN MENU ALGO MATCH
+         ========================================================= -->
+    <section id="page-algo-menu" class="page hidden">
+      <div class="container">
+        <div class="top-nav-bar">
+          <button type="button" class="btn btn-secondary btn-sm" data-nav="page-submenu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Kembali ke Submenu Game Interaktif
+          </button>
+        </div>
+
+        <div class="card algo-menu-card">
+          <div class="algo-menu-grid">
+            <div class="algo-menu-content">
+              <span class="badge badge-yellow">TPACK Interactive Learning</span>
+              <h1 class="algo-menu-title">ALGO <span class="text-blue">MATCH</span></h1>
+              <p class="algo-menu-tagline">Learn, Match, and Master the Algorithm!</p>
+              <p class="algo-menu-desc">
+                Latih pemahaman konsep dasar algoritma dengan mencocokkan bentuk simbol <strong>Flowchart</strong> dan struktur perintah <strong>Pseudocode</strong> secara interaktif melalui mekanisme Drag &amp; Drop.
+              </p>
+
+              <div class="algo-menu-buttons">
+                <button type="button" id="btn-algo-start" class="btn btn-primary btn-lg">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                  MULAI BERMAIN
+                </button>
+                <div class="algo-menu-secondary-row">
+                  <button type="button" id="btn-algo-materi" class="btn btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                    PELAJARI MATERI
+                  </button>
+                  <button type="button" id="btn-algo-panduan" class="btn btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                    PANDUAN
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="algo-menu-visual">
+              <div class="visual-box">
+                <svg width="260" height="220" viewBox="0 0 260 220" fill="none">
+                  <rect x="75" y="12" width="110" height="32" rx="16" fill="#DBEAFE" stroke="#2563EB" stroke-width="2.5"/>
+                  <text x="130" y="32" text-anchor="middle" fill="#172554" font-family="Plus Jakarta Sans" font-size="12" font-weight="700">TERMINATOR</text>
+                  <line x1="130" y1="44" x2="130" y2="68" stroke="#2563EB" stroke-width="2.5"/>
+                  <polygon points="130,70 125,62 135,62" fill="#2563EB"/>
+
+                  <polygon points="65,72 205,72 190,108 50,108" fill="#FFFFFF" stroke="#2563EB" stroke-width="2.5"/>
+                  <text x="128" y="94" text-anchor="middle" fill="#172554" font-family="Plus Jakarta Sans" font-size="12" font-weight="700">INPUT / OUTPUT</text>
+                  <line x1="130" y1="108" x2="130" y2="132" stroke="#2563EB" stroke-width="2.5"/>
+                  <polygon points="130,134 125,126 135,126" fill="#2563EB"/>
+
+                  <rect x="65" y="136" width="130" height="36" rx="6" fill="#FEF9C3" stroke="#FACC15" stroke-width="2.5"/>
+                  <text x="130" y="158" text-anchor="middle" fill="#172554" font-family="Fira Code" font-size="12" font-weight="600">PROCESS</text>
+
+                  <circle cx="215" cy="40" r="14" fill="#FEF9C3" stroke="#FACC15" stroke-width="2"/>
+                  <text x="215" y="44" text-anchor="middle" fill="#172554" font-family="Plus Jakarta Sans" font-size="11" font-weight="700">A</text>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         HALAMAN 5: MATERI PEMBELAJARAN
+         ========================================================= -->
+    <section id="page-materi" class="page hidden">
+      <div class="container">
+        <div class="top-nav-bar">
+          <button type="button" id="btn-materi-back" class="btn btn-secondary btn-sm">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Kembali
+          </button>
+          <button type="button" id="btn-materi-to-play" class="btn btn-primary btn-sm">
+            Lanjut Bermain
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <div class="section-header text-center">
+          <span class="badge badge-yellow">Bahan Ajar Algoritma Dasar</span>
+          <h1 class="page-title">Materi Pembelajaran</h1>
+          <p class="page-subtitle">Pelajari pengertian, fungsi, dan simbol dasar Flowchart serta struktur perintah Pseudocode.</p>
+        </div>
+
+        <!-- TAB KATEGORI MATERI -->
+        <div class="tabs-wrapper">
+          <button type="button" class="tab-btn active" data-materi-tab="flowchart">
+            1. Materi Flowchart
+          </button>
+          <button type="button" class="tab-btn" data-materi-tab="pseudocode">
+            2. Materi Pseudocode
+          </button>
+        </div>
+
+        <!-- KONTEN MATERI DIRENDER DINAMIS OLEH renderPages.js -->
+        <div id="materi-content-area"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         HALAMAN 6: PANDUAN PERMAINAN
+         ========================================================= -->
+    <section id="page-panduan" class="page hidden">
+      <div class="container">
+        <div class="top-nav-bar">
+          <button type="button" id="btn-panduan-back" class="btn btn-secondary btn-sm">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Kembali
+          </button>
+          <button type="button" id="btn-panduan-to-play" class="btn btn-primary btn-sm">
+            Mulai Bermain
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <div class="section-header text-center">
+          <span class="badge badge-yellow">Petunjuk &amp; Aturan Main</span>
+          <h1 class="page-title">Panduan Permainan</h1>
+          <p class="page-subtitle">Pahami mekanisme Drag &amp; Drop, sistem penilaian, perolehan bintang, dan cara membuka level berikutnya.</p>
+        </div>
+
+        <!-- KONTEN PANDUAN & CONTOH INTERAKTIF DIRENDER DINAMIS OLEH renderPages.js -->
+        <div id="panduan-content-area"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         HALAMAN 7: PEMILIHAN LEVEL
+         ========================================================= -->
+    <section id="page-levels" class="page hidden">
+      <div class="container">
+        <div class="top-nav-bar">
+          <button type="button" class="btn btn-secondary btn-sm" data-nav="page-algo-menu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Kembali ke Menu Game
+          </button>
+          <button type="button" id="btn-view-final-from-levels" class="btn btn-accent btn-sm hidden">
+            Lihat Rekap Hasil Akhir
+          </button>
+        </div>
+
+        <div class="section-header text-center">
+          <span class="badge badge-yellow">2 Tahap Pembelajaran</span>
+          <h1 class="page-title">Pilih Level Permainan</h1>
+          <p class="page-subtitle">Selesaikan Level 1 (Flowchart) terlebih dahulu untuk membuka akses ke Level 2 (Pseudocode).</p>
+        </div>
+
+        <div id="level-cards-container" class="grid-2 levels-grid"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         HALAMAN 8: GAMEPLAY INTERAKTIF
+         ========================================================= -->
+    <section id="page-gameplay" class="page hidden">
+      <div class="container">
+        <!-- HEADER GAMEPLAY -->
+        <div class="card gameplay-header-card">
+          <div class="gameplay-top-row">
+            <div class="gameplay-title-group">
+              <span id="gp-level-badge" class="badge badge-blue">LEVEL 1</span>
+              <h2 id="gp-level-title" class="gp-title">FLOWCHART</h2>
+            </div>
+
+            <div class="gameplay-stats-group">
+              <span class="badge badge-yellow gp-score-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#FACC15" stroke="#172554" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Poin sementara: <strong id="gp-score">0</strong>
+              </span>
+              <button type="button" id="btn-gp-exit" class="btn btn-secondary btn-sm">
+                Keluar
+              </button>
+            </div>
+          </div>
+
+          <div class="gameplay-progress-row">
+            <div class="progress-meta">
+              <span id="gp-question-counter">Soal 1 dari 6</span>
+              <span id="gp-progress-percent">Progress: 0%</span>
+            </div>
+            <div class="progress-track">
+              <div id="gp-progress-fill" class="progress-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INSTRUKSI SOAL -->
+        <div class="instruction-banner">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <p id="gp-instruction-text">Seret (Drag) objek di sebelah kiri dan letakkan (Drop) pada kotak definisi fungsi yang sesuai di sebelah kanan. Anda juga dapat mengetuk objek lalu mengetuk target.</p>
+        </div>
+
+        <!-- FEEDBACK EDUKATIF -->
+        <div id="gp-feedback-box" class="feedback-banner hidden" role="status" aria-live="polite">
+          <div class="feedback-icon" id="gp-feedback-icon"></div>
+          <div class="feedback-content">
+            <h4 id="gp-feedback-title" class="feedback-title">BENAR!</h4>
+            <p id="gp-feedback-text" class="feedback-text"></p>
+          </div>
+        </div>
+
+        <!-- AREA UTAMA DRAG & DROP -->
+        <div class="gameplay-board">
+          <div class="board-column">
+            <h3 class="board-col-title" id="gp-source-col-title">Simbol Flowchart</h3>
+            <div id="gp-drag-items" class="drag-items-list"></div>
+          </div>
+
+          <div class="board-column">
+            <h3 class="board-col-title">Definisi &amp; Fungsi</h3>
+            <div id="gp-drop-zones" class="drop-zones-list"></div>
+          </div>
+        </div>
+
+        <!-- TOMBOL SELESAI LEVEL (MUNCUL SAAT 6/6 TERJAWAB) -->
+        <div id="gp-complete-bar" class="gp-complete-bar hidden">
+          <button type="button" id="btn-gp-finish-level" class="btn btn-primary btn-lg">
+            Lihat Penghargaan Level
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         HALAMAN 9: AWARDING SCREEN (PER LEVEL)
+         ========================================================= -->
+    <section id="page-awarding" class="page hidden">
+      <div class="container awarding-container">
+        <div id="awarding-content-area" class="card awarding-card text-center"></div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         HALAMAN 10: FINAL RESULT SCREEN (REKAP KESELURUHAN)
+         ========================================================= -->
+    <section id="page-final" class="page hidden">
+      <div class="container final-container">
+        <div id="final-content-area" class="card final-card"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- DIALOG KONFIRMASI KELUAR PERMAINAN -->
+  <div id="exit-confirm-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-exit-title">
+    <div class="modal-box">
+      <div class="modal-icon bg-soft-yellow text-navy">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+      </div>
+      <h3 id="modal-exit-title" class="modal-title">Keluar dari Permainan?</h3>
+      <p class="modal-desc">Progres soal pada level yang sedang berlangsung tidak akan disimpan jika Anda keluar sekarang. Apakah Anda yakin ingin keluar?</p>
+      <div class="modal-actions">
+        <button type="button" id="btn-cancel-exit" class="btn btn-secondary">Lanjutkan Bermain</button>
+        <button type="button" id="btn-confirm-exit" class="btn btn-primary">Ya, Keluar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFIKASI (UNTUK PLACEHOLDER MENU) -->
+  <div id="toast-notification" class="toast hidden" role="status"></div>
+
+  <!-- KONTAINER CONFETTI -->
+  <div id="confetti-container" class="confetti-container" aria-hidden="true"></div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
