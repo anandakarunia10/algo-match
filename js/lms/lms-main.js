@@ -13,7 +13,7 @@ function showToast(message) {
 
 document.addEventListener("DOMContentLoaded", () => {
   initAuthUI({
-    onLoginSuccess: (user) => showDashboardView(user),
+    onLoginSuccess: (user) => showDashboardView(user, showToast),
     notify: showToast,
   });
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const activeUser = getSession();
   if (activeUser) {
-    showDashboardView(activeUser);
+    showDashboardView(activeUser, showToast);
   } else {
     showAuthView();
   }

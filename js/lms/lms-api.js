@@ -14,7 +14,6 @@ async function postToWebhook(payload) {
     });
 
     const rawText = await response.text();
-
     let parsed;
     try {
       parsed = JSON.parse(rawText);
@@ -23,7 +22,6 @@ async function postToWebhook(payload) {
         "Respon server tidak valid. Pastikan deployment Apps Script berstatus 'Siapa saja'."
       );
     }
-
     return parsed;
   } catch (err) {
     if (err.name === "AbortError") {
@@ -36,19 +34,67 @@ async function postToWebhook(payload) {
 }
 
 export async function apiRegisterUser({ nama, nim, kelas, passwordHash }) {
-  return postToWebhook({
-    action: "register",
-    nama,
-    nim,
-    kelas,
-    passwordHash,
-  });
+  return postToWebhook({ action: "register", nama, nim, kelas, passwordHash });
 }
 
 export async function apiLoginUser({ nim, passwordHash }) {
+  return postToWebhook({ action: "login", nim, passwordHash });
+}
+
+export async function apiGetDashboardData(nim) {
+  return postToWebhook({ action: "get_dashboard", nim });
+}
+
+export async function apiSubmitTugas({ nim, nama, kelas, judulTugas, linkJawaban, catatan }) {
   return postToWebhook({
-    action: "login",
+    action: "submit_tugas",
     nim,
-    passwordHash,
+    nama,
+    kelas,
+    judulTugas,
+    linkJawaban,
+    catatan,
+  });
+}
+
+export async function apiGetDosenData() {
+  return postToWebhook({ action: "get_dosen_data" });
+}
+
+export async function apiAddMateri({ pertemuan, judul, deskripsi, tipe, link }) {
+  return postToWebhook({
+    action: "add_materi",
+    pertemuan,
+    judul,
+    deskripsi,
+    tipe,
+    link,
+  });
+}
+
+export async function apiUpdateMateri({ rowNumber, pertemuan, judul, deskripsi, tipe, link }) {
+  return postToWebhook({
+    action: "update_materi",
+    rowNumber,
+    pertemuan,
+    judul,
+    deskripsi,
+    tipe,
+    link,
+  });
+}
+
+export async function apiDeleteMateri(rowNumber) {
+  return postToWebhook({
+    action: "delete_materi",
+    rowNumber,
+  });
+}
+
+export async function apiGradeTugas({ rowNumber, nilai }) {
+  return postToWebhook({
+    action: "grade_tugas",
+    rowNumber,
+    nilai,
   });
 }

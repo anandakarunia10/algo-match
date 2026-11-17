@@ -106,99 +106,205 @@
         </div>
       </div>
 
-      <nav class="horton-tabs" aria-label="Navigasi Pilar Pembelajaran">
-        <button type="button" class="horton-tab-btn active" data-horton-tab="tab-tujuan">
-          1. Tujuan Pembelajaran
-        </button>
-        <button type="button" class="horton-tab-btn" data-horton-tab="tab-aktivitas">
-          2. Materi &amp; Aktivitas
-        </button>
-        <button type="button" class="horton-tab-btn" data-horton-tab="tab-bukti">
-          3. Bukti &amp; Pengumpulan Tugas
-        </button>
-      </nav>
+      <!-- VIEW MAHASISWA -->
+      <div id="lms-mahasiswa-view">
+        <nav class="horton-tabs" aria-label="Navigasi Pilar Pembelajaran">
+          <button type="button" class="horton-tab-btn active" data-horton-tab="tab-tujuan">
+            1. Tujuan Pembelajaran
+          </button>
+          <button type="button" class="horton-tab-btn" data-horton-tab="tab-aktivitas">
+            2. Materi &amp; Aktivitas
+          </button>
+          <button type="button" class="horton-tab-btn" data-horton-tab="tab-bukti">
+            3. Bukti &amp; Pengumpulan Tugas
+          </button>
+        </nav>
 
-      <div id="panel-tab-tujuan" class="horton-panel">
-        <div class="card lms-course-card">
-          <span class="badge badge-blue">Desain E-Learning • William Horton</span>
-          <h2 class="lms-section-heading" id="course-title">Algoritma &amp; Pemrograman Dasar</h2>
-          <p class="lms-course-desc" id="course-desc"></p>
-          <h3 class="lms-sub-heading">Capaian Pembelajaran Mata Kuliah (CPMK)</h3>
-          <div id="cpmk-list" class="cpmk-grid"></div>
+        <div id="panel-tab-tujuan" class="horton-panel">
+          <div class="card lms-course-card">
+            <span class="badge badge-blue">Desain E-Learning • William Horton</span>
+            <h2 class="lms-section-heading" id="course-title">Algoritma &amp; Pemrograman Dasar</h2>
+            <p class="lms-course-desc" id="course-desc"></p>
+            <h3 class="lms-sub-heading">Capaian Pembelajaran Mata Kuliah (CPMK)</h3>
+            <div id="cpmk-list" class="cpmk-grid"></div>
+          </div>
+        </div>
+
+        <div id="panel-tab-aktivitas" class="horton-panel hidden">
+          <div class="card lms-game-sync-card">
+            <div class="game-sync-header">
+              <div>
+                <span class="badge badge-yellow">Integrasi Praktikum Interaktif</span>
+                <h2 class="lms-section-heading">Progres Game ALGO MATCH</h2>
+                <p class="lms-muted-text">Skor terbaik Anda tersinkronisasi otomatis berdasarkan NIM akun.</p>
+              </div>
+              <a href="index.html" class="btn btn-primary">Mainkan ALGO MATCH</a>
+            </div>
+
+            <div class="game-stats-grid">
+              <div class="stat-box">
+                <span class="stat-label">Skor Level 1 (Flowchart)</span>
+                <strong class="stat-value" id="stat-lvl1">0 / 60</strong>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">Skor Level 2 (Pseudocode)</span>
+                <strong class="stat-value" id="stat-lvl2">0 / 60</strong>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">Total Skor &amp; Bintang</span>
+                <strong class="stat-value" id="stat-total">0 Poin (0 ★)</strong>
+              </div>
+              <div class="stat-box">
+                <span class="stat-label">Status Capaian</span>
+                <strong class="stat-value text-blue" id="stat-status">Memuat...</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="lms-section-top">
+            <h2 class="lms-section-heading">Modul &amp; Bahan Ajar Digital</h2>
+          </div>
+          <div id="lms-materi-grid" class="grid-3"></div>
+        </div>
+
+        <div id="panel-tab-bukti" class="horton-panel hidden">
+          <div class="bukti-layout">
+            <div class="card">
+              <span class="badge badge-blue">Asesmen Formatif</span>
+              <h2 class="lms-section-heading">Kumpulkan Tugas</h2>
+              <p class="lms-muted-text">Tautkan link Google Drive, GitHub, atau dokumen jawaban Anda.</p>
+
+              <form id="form-submit-tugas" class="tugas-form">
+                <div class="form-group">
+                  <label for="tugas-judul" class="form-label">Pilih / Judul Tugas</label>
+                  <select id="tugas-judul" class="form-input" required>
+                    <option value="Tugas 1 - Analisis Flowchart">Tugas 1 - Analisis Flowchart</option>
+                    <option value="Tugas 2 - Implementasi Pseudocode">Tugas 2 - Implementasi Pseudocode</option>
+                    <option value="Tugas 3 - Studi Kasus Algoritma">Tugas 3 - Studi Kasus Algoritma</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="tugas-link" class="form-label">Link Jawaban (Google Drive / GitHub / Docs)</label>
+                  <input type="url" id="tugas-link" class="form-input" placeholder="https://drive.google.com/..." required />
+                </div>
+                <div class="form-group">
+                  <label for="tugas-catatan" class="form-label">Catatan Tambahan (Opsional)</label>
+                  <textarea id="tugas-catatan" class="form-input" rows="3" placeholder="Tuliskan ringkasan atau keterangan pengerjaan..."></textarea>
+                </div>
+                <button type="submit" id="btn-submit-tugas" class="btn btn-primary btn-full">
+                  Kirim Jawaban Tugas
+                </button>
+              </form>
+            </div>
+
+            <div class="card">
+              <span class="badge badge-yellow">Portofolio Bukti Belajar</span>
+              <h2 class="lms-section-heading">Riwayat Pengumpulan &amp; Nilai</h2>
+              <div id="lms-tugas-history" class="tugas-history-list"></div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div id="panel-tab-aktivitas" class="horton-panel hidden">
-        <div class="card lms-game-sync-card">
-          <div class="game-sync-header">
-            <div>
-              <span class="badge badge-yellow">Integrasi Praktikum Interaktif</span>
-              <h2 class="lms-section-heading">Progres Game ALGO MATCH</h2>
-              <p class="lms-muted-text">Skor terbaik Anda tersinkronisasi otomatis berdasarkan NIM akun.</p>
-            </div>
-            <a href="index.html" class="btn btn-primary">Mainkan ALGO MATCH</a>
-          </div>
+      <!-- VIEW DOSEN / PENGAJAR -->
+      <div id="lms-dosen-view" class="hidden">
+        <nav class="horton-tabs" aria-label="Navigasi Panel Dosen">
+          <button type="button" class="dosen-tab-btn active" data-dosen-tab="dosen-penilaian">
+            1. Penilaian Tugas Mahasiswa
+          </button>
+          <button type="button" class="dosen-tab-btn" data-dosen-tab="dosen-materi">
+            2. Tambah Modul Materi
+          </button>
+          <button type="button" class="dosen-tab-btn" data-dosen-tab="dosen-rekap-game">
+            3. Rekap Skor ALGO MATCH
+          </button>
+        </nav>
 
-          <div class="game-stats-grid">
-            <div class="stat-box">
-              <span class="stat-label">Skor Level 1 (Flowchart)</span>
-              <strong class="stat-value" id="stat-lvl1">0 / 60</strong>
+        <div id="panel-dosen-penilaian" class="dosen-panel">
+          <div class="card">
+            <span class="badge badge-blue">Evaluasi &amp; Bukti Belajar</span>
+            <h2 class="lms-section-heading">Daftar Kiriman Tugas Mahasiswa</h2>
+            <p class="lms-muted-text">Periksa tautan jawaban dan berikan nilai (0–100) yang langsung tersinkron ke akun mahasiswa.</p>
+            <div id="dosen-tugas-list" class="dosen-list-stack"></div>
+          </div>
+        </div>
+
+        <div id="panel-dosen-materi" class="dosen-panel hidden">
+          <div class="bukti-layout">
+            <div class="card">
+              <span class="badge badge-yellow" id="materi-form-badge">Tambah Konten</span>
+              <h2 class="lms-section-heading" id="materi-form-heading">Publikasikan Materi Baru</h2>
+              <p class="lms-muted-text">Materi yang disimpan akan langsung tampil pada dashboard seluruh mahasiswa.</p>
+
+              <form id="form-add-materi" class="tugas-form">
+                <input type="hidden" id="materi-edit-row" value="" />
+                <div class="form-group">
+                  <label for="materi-pertemuan" class="form-label">Label Pertemuan</label>
+                  <input type="text" id="materi-pertemuan" class="form-input" placeholder="Contoh: Pertemuan 2" required />
+                </div>
+                <div class="form-group">
+                  <label for="materi-judul" class="form-label">Judul Materi</label>
+                  <input type="text" id="materi-judul" class="form-input" placeholder="Contoh: Struktur Percabangan & Perulangan" required />
+                </div>
+                <div class="form-group">
+                  <label for="materi-tipe" class="form-label">Tipe Bahan Ajar</label>
+                  <select id="materi-tipe" class="form-input" required>
+                    <option value="Modul PDF">Modul PDF</option>
+                    <option value="Video">Video Pembelajaran</option>
+                    <option value="Slide">Slide Presentasi</option>
+                    <option value="Referensi">Artikel / Referensi</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="materi-link" class="form-label">Tautan Materi (URL Drive / YouTube / Web)</label>
+                  <input type="url" id="materi-link" class="form-input" placeholder="https://..." required />
+                </div>
+                <div class="form-group">
+                  <label for="materi-deskripsi" class="form-label">Deskripsi Singkat</label>
+                  <textarea id="materi-deskripsi" class="form-input" rows="3" placeholder="Ringkasan topik pembelajaran..." required></textarea>
+                </div>
+                <div class="dosen-form-actions">
+                  <button type="submit" id="btn-add-materi" class="btn btn-primary btn-full">
+                    Publikasikan Materi
+                  </button>
+                  <button type="button" id="btn-cancel-edit-materi" class="btn btn-secondary btn-full hidden">
+                    Batal Edit
+                  </button>
+                </div>
+              </form>
             </div>
-            <div class="stat-box">
-              <span class="stat-label">Skor Level 2 (Pseudocode)</span>
-              <strong class="stat-value" id="stat-lvl2">0 / 60</strong>
-            </div>
-            <div class="stat-box">
-              <span class="stat-label">Total Skor &amp; Bintang</span>
-              <strong class="stat-value" id="stat-total">0 Poin (0 ★)</strong>
-            </div>
-            <div class="stat-box">
-              <span class="stat-label">Status Capaian</span>
-              <strong class="stat-value text-blue" id="stat-status">Memuat...</strong>
+
+            <div class="card">
+              <span class="badge badge-blue">Katalog Pembelajaran</span>
+              <h2 class="lms-section-heading">Daftar Materi yang Sudah Dirilis</h2>
+              <p class="lms-muted-text">Kelola, ubah tautan, atau hapus modul pembelajaran aktif.</p>
+              <div id="dosen-materi-list" class="dosen-list-stack"></div>
             </div>
           </div>
         </div>
 
-        <div class="lms-section-top">
-          <h2 class="lms-section-heading">Modul &amp; Bahan Ajar Digital</h2>
-        </div>
-        <div id="lms-materi-grid" class="grid-3"></div>
-      </div>
-
-      <div id="panel-tab-bukti" class="horton-panel hidden">
-        <div class="bukti-layout">
+        <div id="panel-dosen-rekap-game" class="dosen-panel hidden">
           <div class="card">
-            <span class="badge badge-blue">Asesmen Formatif</span>
-            <h2 class="lms-section-heading">Kumpulkan Tugas</h2>
-            <p class="lms-muted-text">Tautkan link Google Drive, GitHub, atau dokumen jawaban Anda.</p>
-
-            <form id="form-submit-tugas" class="tugas-form">
-              <div class="form-group">
-                <label for="tugas-judul" class="form-label">Pilih / Judul Tugas</label>
-                <select id="tugas-judul" class="form-input" required>
-                  <option value="Tugas 1 - Analisis Flowchart">Tugas 1 - Analisis Flowchart</option>
-                  <option value="Tugas 2 - Implementasi Pseudocode">Tugas 2 - Implementasi Pseudocode</option>
-                  <option value="Tugas 3 - Studi Kasus Algoritma">Tugas 3 - Studi Kasus Algoritma</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="tugas-link" class="form-label">Link Jawaban (Google Drive / GitHub / Docs)</label>
-                <input type="url" id="tugas-link" class="form-input" placeholder="https://drive.google.com/..." required />
-              </div>
-              <div class="form-group">
-                <label for="tugas-catatan" class="form-label">Catatan Tambahan (Opsional)</label>
-                <textarea id="tugas-catatan" class="form-input" rows="3" placeholder="Tuliskan ringkasan atau keterangan pengerjaan..."></textarea>
-              </div>
-              <button type="submit" id="btn-submit-tugas" class="btn btn-primary btn-full">
-                Kirim Jawaban Tugas
-              </button>
-            </form>
-          </div>
-
-          <div class="card">
-            <span class="badge badge-yellow">Portofolio Bukti Belajar</span>
-            <h2 class="lms-section-heading">Riwayat Pengumpulan &amp; Nilai</h2>
-            <div id="lms-tugas-history" class="tugas-history-list"></div>
+            <span class="badge badge-green">Analitik Praktikum</span>
+            <h2 class="lms-section-heading">Rekap Nilai Game ALGO MATCH</h2>
+            <p class="lms-muted-text">Data riwayat penyelesaian game dari seluruh mahasiswa.</p>
+            <div class="table-responsive">
+              <table class="lms-table">
+                <thead>
+                  <tr>
+                    <th>Waktu</th>
+                    <th>NIM</th>
+                    <th>Nama</th>
+                    <th>Kelas</th>
+                    <th>Lvl 1</th>
+                    <th>Lvl 2</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="dosen-game-tbody"></tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
