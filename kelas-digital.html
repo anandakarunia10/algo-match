@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kelas Digital (LMS) – ALGO MATCH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/lms-auth.css" />
+  <link rel="stylesheet" href="css/lms-dashboard.css" />
+</head>
+<body>
+  <header class="top-navbar">
+    <div class="container navbar-inner">
+      <a href="index.html" class="brand-logo lms-brand-link" title="Kembali ke Menu Pembelajaran">
+        <span class="brand-icon lms-brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="5" rx="2.5"></rect>
+            <polygon points="12 10 17 14 12 18 7 14 12 10"></polygon>
+            <path d="M10 5.5h4a2 2 0 0 1 2 2V10"></path>
+            <path d="M12 18v3"></path>
+          </svg>
+        </span>
+        <span class="brand-text">ALGO<span class="brand-accent">LMS</span></span>
+      </a>
+
+      <div class="navbar-actions">
+        <a href="index.html" class="btn btn-primary btn-sm">Menu Pembelajaran</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <section id="lms-auth-section" class="container">
+      <div class="section-header text-center auth-header">
+        <span class="badge badge-yellow">Kelas Digital • Autentikasi</span>
+        <h1 class="page-title">Portal Kelas Digital</h1>
+        <p class="page-subtitle">Masuk menggunakan NIM dan password Anda untuk mengakses materi, aktivitas, dan pengumpulan tugas.</p>
+      </div>
+
+      <div class="auth-container">
+        <div class="card auth-card">
+          <div class="auth-tabs">
+            <button type="button" id="tab-login" class="auth-tab-btn active">Masuk (Login)</button>
+            <button type="button" id="tab-register" class="auth-tab-btn">Daftar Akun</button>
+          </div>
+
+          <div id="auth-alert" class="alert-box hidden" role="alert"></div>
+
+          <form id="form-login">
+            <div class="form-group">
+              <label for="login-nim" class="form-label">NIM</label>
+              <input type="text" id="login-nim" class="form-input" placeholder="Masukkan NIM Anda" required />
+            </div>
+            <div class="form-group">
+              <label for="login-password" class="form-label">Password</label>
+              <input type="password" id="login-password" class="form-input" placeholder="Masukkan password" required />
+            </div>
+            <button type="submit" id="btn-submit-login" class="btn btn-primary btn-full auth-submit-btn">
+              Masuk ke Kelas Digital
+            </button>
+          </form>
+
+          <form id="form-register" class="hidden">
+            <div class="form-group">
+              <label for="reg-nama" class="form-label">Nama Lengkap</label>
+              <input type="text" id="reg-nama" class="form-input" placeholder="Contoh: Gede Ananda Karunia Putra" required />
+            </div>
+            <div class="form-group">
+              <label for="reg-nim" class="form-label">NIM</label>
+              <input type="text" id="reg-nim" class="form-input" placeholder="Contoh: 2455011010" required />
+            </div>
+            <div class="form-group">
+              <label for="reg-kelas" class="form-label">Kelas</label>
+              <input type="text" id="reg-kelas" class="form-input" placeholder="Contoh: TRPL 3A" required />
+            </div>
+            <div class="form-group">
+              <label for="reg-password" class="form-label">Buat Password</label>
+              <input type="password" id="reg-password" class="form-input" placeholder="Minimal 6 karakter" minlength="6" required />
+            </div>
+            <button type="submit" id="btn-submit-register" class="btn btn-primary btn-full auth-submit-btn">
+              Daftar Akun Sekarang
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="lms-dashboard-section" class="container hidden">
+      <div class="lms-welcome-banner">
+        <div>
+          <div class="lms-badge-row">
+            <span class="badge badge-green">● Terautentikasi</span>
+            <span id="dash-role-badge" class="badge badge-yellow">Mahasiswa</span>
+          </div>
+          <h1 class="page-title lms-welcome-title" id="dash-welcome-name">Selamat Datang!</h1>
+          <p class="page-subtitle" id="dash-user-meta">NIM: - | Kelas: -</p>
+        </div>
+
+        <div class="lms-banner-actions">
+          <button type="button" id="btn-refresh-lms" class="btn btn-primary btn-sm">Sinkron Data</button>
+          <button type="button" id="btn-lms-logout" class="btn btn-primary btn-sm">Keluar (Logout)</button>
+        </div>
+      </div>
+
+      <nav class="horton-tabs" aria-label="Navigasi Pilar Pembelajaran">
+        <button type="button" class="horton-tab-btn active" data-horton-tab="tab-tujuan">
+          1. Tujuan Pembelajaran
+        </button>
+        <button type="button" class="horton-tab-btn" data-horton-tab="tab-aktivitas">
+          2. Materi &amp; Aktivitas
+        </button>
+        <button type="button" class="horton-tab-btn" data-horton-tab="tab-bukti">
+          3. Bukti &amp; Pengumpulan Tugas
+        </button>
+      </nav>
+
+      <div id="panel-tab-tujuan" class="horton-panel">
+        <div class="card lms-course-card">
+          <span class="badge badge-blue">Desain E-Learning • William Horton</span>
+          <h2 class="lms-section-heading" id="course-title">Algoritma &amp; Pemrograman Dasar</h2>
+          <p class="lms-course-desc" id="course-desc"></p>
+          <h3 class="lms-sub-heading">Capaian Pembelajaran Mata Kuliah (CPMK)</h3>
+          <div id="cpmk-list" class="cpmk-grid"></div>
+        </div>
+      </div>
+
+      <div id="panel-tab-aktivitas" class="horton-panel hidden">
+        <div class="card lms-game-sync-card">
+          <div class="game-sync-header">
+            <div>
+              <span class="badge badge-yellow">Integrasi Praktikum Interaktif</span>
+              <h2 class="lms-section-heading">Progres Game ALGO MATCH</h2>
+              <p class="lms-muted-text">Skor terbaik Anda tersinkronisasi otomatis berdasarkan NIM akun.</p>
+            </div>
+            <a href="index.html" class="btn btn-primary">Mainkan ALGO MATCH</a>
+          </div>
+
+          <div class="game-stats-grid">
+            <div class="stat-box">
+              <span class="stat-label">Skor Level 1 (Flowchart)</span>
+              <strong class="stat-value" id="stat-lvl1">0 / 60</strong>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Skor Level 2 (Pseudocode)</span>
+              <strong class="stat-value" id="stat-lvl2">0 / 60</strong>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Total Skor &amp; Bintang</span>
+              <strong class="stat-value" id="stat-total">0 Poin (0 ★)</strong>
+            </div>
+            <div class="stat-box">
+              <span class="stat-label">Status Capaian</span>
+              <strong class="stat-value text-blue" id="stat-status">Memuat...</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="lms-section-top">
+          <h2 class="lms-section-heading">Modul &amp; Bahan Ajar Digital</h2>
+        </div>
+        <div id="lms-materi-grid" class="grid-3"></div>
+      </div>
+
+      <div id="panel-tab-bukti" class="horton-panel hidden">
+        <div class="bukti-layout">
+          <div class="card">
+            <span class="badge badge-blue">Asesmen Formatif</span>
+            <h2 class="lms-section-heading">Kumpulkan Tugas</h2>
+            <p class="lms-muted-text">Tautkan link Google Drive, GitHub, atau dokumen jawaban Anda.</p>
+
+            <form id="form-submit-tugas" class="tugas-form">
+              <div class="form-group">
+                <label for="tugas-judul" class="form-label">Pilih / Judul Tugas</label>
+                <select id="tugas-judul" class="form-input" required>
+                  <option value="Tugas 1 - Analisis Flowchart">Tugas 1 - Analisis Flowchart</option>
+                  <option value="Tugas 2 - Implementasi Pseudocode">Tugas 2 - Implementasi Pseudocode</option>
+                  <option value="Tugas 3 - Studi Kasus Algoritma">Tugas 3 - Studi Kasus Algoritma</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="tugas-link" class="form-label">Link Jawaban (Google Drive / GitHub / Docs)</label>
+                <input type="url" id="tugas-link" class="form-input" placeholder="https://drive.google.com/..." required />
+              </div>
+              <div class="form-group">
+                <label for="tugas-catatan" class="form-label">Catatan Tambahan (Opsional)</label>
+                <textarea id="tugas-catatan" class="form-input" rows="3" placeholder="Tuliskan ringkasan atau keterangan pengerjaan..."></textarea>
+              </div>
+              <button type="submit" id="btn-submit-tugas" class="btn btn-primary btn-full">
+                Kirim Jawaban Tugas
+              </button>
+            </form>
+          </div>
+
+          <div class="card">
+            <span class="badge badge-yellow">Portofolio Bukti Belajar</span>
+            <h2 class="lms-section-heading">Riwayat Pengumpulan &amp; Nilai</h2>
+            <div id="lms-tugas-history" class="tugas-history-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast-notification" class="toast hidden" role="status"></div>
+
+  <script type="module" src="js/lms/lms-main.js"></script>
+</body>
+</html>

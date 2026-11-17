@@ -1,0 +1,236 @@
+.lms-welcome-banner {
+  background: linear-gradient(135deg, #F3F7FF 0%, #FFFFFF 100%);
+  border: 1px solid var(--light-blue);
+  border-radius: var(--radius-lg);
+  padding: 26px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.lms-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.lms-welcome-title {
+  margin: 0 0 4px;
+}
+
+.lms-banner-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.horton-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  background-color: var(--bg-secondary);
+  padding: 8px;
+  border-radius: 14px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 24px;
+}
+
+.horton-tab-btn {
+  font-family: inherit;
+  font-size: 0.94rem;
+  font-weight: 700;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.horton-tab-btn.active {
+  background-color: var(--primary-blue);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-sm);
+}
+
+.lms-section-heading {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--dark-navy);
+  margin: 8px 0 6px;
+}
+
+.lms-sub-heading {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+  margin: 20px 0 12px;
+}
+
+.lms-course-desc,
+.lms-muted-text {
+  color: var(--text-secondary);
+  font-size: 0.94rem;
+  line-height: 1.6;
+}
+
+.cpmk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.cpmk-item {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--light-blue);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.cpmk-code {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--primary-blue);
+  background-color: var(--soft-blue);
+  padding: 3px 9px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.cpmk-text {
+  font-size: 0.9rem;
+  color: var(--dark-navy);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.lms-game-sync-card {
+  margin-bottom: 24px;
+  border-color: var(--light-blue);
+}
+
+.game-sync-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.game-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.stat-box {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--dark-navy);
+}
+
+.lms-section-top {
+  margin-bottom: 14px;
+}
+
+.materi-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.bukti-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.tugas-form {
+  margin-top: 16px;
+}
+
+.tugas-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.tugas-history-item {
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.tugas-item-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.tugas-item-title {
+  font-weight: 700;
+  color: var(--dark-navy);
+  font-size: 0.95rem;
+}
+
+.tugas-item-meta {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.tugas-item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.empty-state-box {
+  text-align: center;
+  padding: 28px 16px;
+  border: 1.5px dashed var(--border-color);
+  border-radius: 12px;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .horton-tabs {
+    grid-template-columns: 1fr;
+  }
+  .bukti-layout {
+    grid-template-columns: 1fr;
+  }
+}
